@@ -11,6 +11,25 @@
       rel="stylesheet"
     />
     <style>
+      body {
+        font-family: "Open Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      .button-container {
+        width: 100%;
+        text-align: center;
+      }
+      button {
+        padding: 10px 20px;
+        margin: 15px 0;
+        background-color: #1c85b9;
+        color: #eee;
+        border: none;
+        font-size: 18px;
+        font-weight: 400;
+        letter-spacing: 1px;
+      }
       h1 {
         color: #39474e;
       }
@@ -20,7 +39,6 @@
       p,
       h1,
       h2 {
-        font-family: "Open Sans", sans-serif;
         margin: 5px 0px;
       }
       p {
@@ -33,20 +51,21 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: stretch;
         align-content: stretch;
       }
       .stat-block {
-        padding: 1em;
-        width: 43vw;
-        height: 225px;
+        padding: 0.75em 0.25em;
+        width: 90vw;
         border: 1px solid #888;
       }
     </style>
   </head>
   <body>
-    <button class="roll-character">Roll Stats</button>
+    <div class="button-container">
+      <button class="roll-character">Roll Stats</button>
+    </div>
     <div class="character-stats"></div>
   </body>
   <script src="./dice.min.js"></script>
@@ -62,6 +81,8 @@
       doRoll();
       doRoll();
       doRoll();
+      htmlBody = ``;
+      rollIndex = 1;
     });
 
     function doRoll() {
@@ -93,7 +114,7 @@
       // ----------------
       htmlBody += `<div class="stat-block"><h1>Roll #${rollIndex}</h1>`;
       htmlBody += `<h2>STR, CON, DEX, APP, POW</h2>`;
-      htmlBody += `<p>${attributesOne}</p><br>`;
+      htmlBody += `<p>${attributesOne}</p>`;
       htmlBody += `<h2>SIZ, INT, EDU</h2>`;
       htmlBody += `<p>${attributesTwo}</p>`;
       htmlBody += `</div>`;
