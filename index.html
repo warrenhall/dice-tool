@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Call of Cthulhu - Character Roll Tool</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      h1 {
+        color: #39474e;
+      }
+      h2 {
+        color: #364852;
+      }
+      p,
+      h1,
+      h2 {
+        font-family: "Open Sans", sans-serif;
+        margin: 5px 0px;
+      }
+      p {
+        font-weight: 400;
+        font-size: 22px;
+        letter-spacing: 1px;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="roll-character">Roll Stats</button>
+    <div class="character-stats"></div>
+  </body>
+  <script src="./dice.min.js"></script>
+  <script>
+    // Elements
+    const characterStats = document.querySelector(".character-stats");
+    var clickMe = document.querySelector(".roll-character");
+    let htmlBody = "";
+    let rollIndex = 1;
+
+    // This will run when the .click-me element is clicked
+    clickMe.addEventListener("click", function (event) {
+      doRoll();
+      doRoll();
+      doRoll();
+    });
+
+    function doRoll() {
+      // --------------------
+      const attributesOne = [];
+      const attributesTwo = [];
+      const diceStringOne = "3d6";
+      const diceStringTwo = "2d6";
+      for (let index = 0; index <= 5; index++) {
+        let result = +dice.roll(diceStringOne) * 5;
+        attributesOne.push(result);
+      }
+      attributesOne
+        .sort((a, b) => {
+          return b - a;
+        })
+        .pop();
+
+      for (let index = 0; index <= 3; index++) {
+        let result = +(dice.roll(diceStringTwo) + 6) * 5;
+        attributesTwo.push(result);
+      }
+      attributesTwo
+        .sort((a, b) => {
+          b - a;
+        })
+        .pop();
+
+      // ----------------
+      htmlBody += `<h1>Roll #${rollIndex}</h1>`;
+      htmlBody += `<h2>STR, CON, DEX, APP, POW</h2>`;
+      htmlBody += `<p>${attributesOne}</p><br>`;
+      htmlBody += `<h2>SIZ, INT, EDU</h2>`;
+      htmlBody += `<p>${attributesTwo}</p>`;
+      htmlBody += `<hr>`;
+      characterStats.innerHTML = htmlBody;
+      rollIndex++;
+      // --------------------
+    }
+  </script>
+</html>
