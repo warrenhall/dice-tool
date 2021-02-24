@@ -29,6 +29,20 @@
         letter-spacing: 1px;
         color: #666;
       }
+      .character-stats {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: stretch;
+        align-content: stretch;
+      }
+      .stat-block {
+        padding: 1em;
+        width: 43vw;
+        height: 225px;
+        border: 1px solid #888;
+      }
     </style>
   </head>
   <body>
@@ -72,17 +86,17 @@
       }
       attributesTwo
         .sort((a, b) => {
-          b - a;
+          return b - a;
         })
         .pop();
 
       // ----------------
-      htmlBody += `<h1>Roll #${rollIndex}</h1>`;
+      htmlBody += `<div class="stat-block"><h1>Roll #${rollIndex}</h1>`;
       htmlBody += `<h2>STR, CON, DEX, APP, POW</h2>`;
       htmlBody += `<p>${attributesOne}</p><br>`;
       htmlBody += `<h2>SIZ, INT, EDU</h2>`;
       htmlBody += `<p>${attributesTwo}</p>`;
-      htmlBody += `<hr>`;
+      htmlBody += `</div>`;
       characterStats.innerHTML = htmlBody;
       rollIndex++;
       // --------------------
